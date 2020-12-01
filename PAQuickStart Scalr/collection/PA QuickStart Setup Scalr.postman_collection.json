@@ -1,0 +1,3607 @@
+{
+	"info": {
+		"_postman_id": "2e47901a-e9c4-4464-8675-361c02547542",
+		"name": "PA QuickStart Setup Scalr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PF Config",
+			"item": [
+				{
+					"name": "IDP Config",
+					"item": [
+						{
+							"name": "Create PCV  - Simple",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9f1bdf9e-afd1-4288-be36-7f3d863e0d0c",
+										"exec": [
+											"pm.test(\"Simple PCV Created\", function () {",
+											"    pm.response.to.have.status(201);",
+											"",
+											"    var location = pm.response.headers.get(\"Location\");",
+											"    pm.environment.set(\"serverName\", location.substring(8, location.indexOf(\":9999\")));",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-Header",
+										"value": "PingFederate",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"id\": \"{{pcvId}}\",\n    \"name\": \"{{pcvId}}\",\n    \"pluginDescriptorRef\": {\n        \"id\": \"org.sourceid.saml20.domain.SimpleUsernamePasswordCredentialValidator\"\n    },\n    \"configuration\": {\n        \"tables\": [\n            {\n                \"name\": \"Users\",\n                \"rows\": [\n                    {\n                        \"fields\": [\n                            {\n                                \"name\": \"Username\",\n                                \"value\": \"joe\"\n                            },\n                            {\n                                \"name\": \"Password\",\n                                \"value\": \"2Federate\"\n                            },\n                            {\n                                \"name\": \"Confirm Password\",\n                                \"value\": \"2Federate\"\n                            }\n                        ]\n                    },\n                    {\n                        \"fields\": [\n                            {\n                                \"name\": \"Username\",\n                                \"value\": \"sarah\"\n                            },\n                            {\n                                \"name\": \"Password\",\n                                \"value\": \"2Federate\"\n                            },\n                            {\n                                \"name\": \"Confirm Password\",\n                                \"value\": \"2Federate\"\n                            }\n                        ]\n                    },\n                    {\n                        \"fields\": [\n                            {\n                                \"name\": \"Username\",\n                                \"value\": \"test\"\n                            },\n                            {\n                                \"name\": \"Password\",\n                                \"value\": \"2Federate\"\n                            },\n                            {\n                                \"name\": \"Confirm Password\",\n                                \"value\": \"2Federate\"\n                            }\n                        ]\n                    }\n                ]\n            }\n        ],\n        \"fields\": []\n    },\n    \"attributeContract\": {\n        \"coreAttributes\": [\n            {\n                \"name\": \"username\"\n            }\n        ]\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/passwordCredentialValidators",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"passwordCredentialValidators"
+									]
+								},
+								"description": "Create an Active Directory based Password Credential Validator"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Adapter - HTML Form",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"HTML Form Adapter Created\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"id": "05bda125-8649-4034-9e54-418be3077cfe"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Xsrf-Header",
+										"value": "PingFederate"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\n            \"id\": \"{{idpAdapterId}}\",\n            \"name\": \"HTML Form PA QuickStart\",\n            \"pluginDescriptorRef\": {\n                \"id\": \"com.pingidentity.adapters.htmlform.idp.HtmlFormIdpAuthnAdapter\"\n            },\n            \"configuration\": {\n                \"tables\": [\n                    {\n                        \"name\": \"Credential Validators\",\n                        \"rows\": [\n                            {\n                                \"fields\": [\n                                    {\n                                        \"name\": \"Password Credential Validator Instance\",\n                                        \"value\": \"{{pcvId}}\"\n                                    }\n                                ]\n                            }\n                        ]\n                    }\n                ],\n                \"fields\": [\n                    {\n                        \"name\": \"Challenge Retries\",\n                        \"value\": \"3\"\n                    },\n                    {\n                        \"name\": \"Session State\",\n                        \"value\": \"None\"\n                    },\n                    {\n                        \"name\": \"Session Timeout\",\n                        \"value\": \"60\"\n                    },\n                    {\n                        \"name\": \"Session Max Timeout\",\n                        \"value\": \"480\"\n                    },\n                    {\n                        \"name\": \"Allow Password Changes\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Enable 'Remember My Username'\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Show Password Expiring Warning\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Password Reset Type\",\n                        \"value\": \"NONE\"\n                    },\n                    {\n                        \"name\": \"Account Unlock\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Enable Username Recovery\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Login Template\",\n                        \"value\": \"html.form.login.template.html\"\n                    },\n                    {\n                        \"name\": \"Logout Template\",\n                        \"value\": \"idp.logout.success.page.template.html\"\n                    },\n                    {\n                        \"name\": \"Change Password Template\",\n                        \"value\": \"html.form.change.password.template.html\"\n                    },\n                    {\n                        \"name\": \"Change Password Message Template\",\n                        \"value\": \"html.form.message.template.html\"\n                    },\n                    {\n                        \"name\": \"Password Management System Message Template\",\n                        \"value\": \"html.form.message.template.html\"\n                    },\n                    {\n                        \"name\": \"Change Password Email Template\",\n                        \"value\": \"message-template-end-user-password-change.html\"\n                    },\n                    {\n                        \"name\": \"Expiring Password Warning Template\",\n                        \"value\": \"html.form.password.expiring.notification.template.html\"\n                    },\n                    {\n                        \"name\": \"Threshold for Expiring Password Warning\",\n                        \"value\": \"7\"\n                    },\n                    {\n                        \"name\": \"Snooze Interval for Expiring Password Warning\",\n                        \"value\": \"24\"\n                    },\n                    {\n                        \"name\": \"Login Challenge Template\",\n                        \"value\": \"html.form.login.challenge.template.html\"\n                    },\n                    {\n                        \"name\": \"'Remember My Username' Lifetime\",\n                        \"value\": \"30\"\n                    },\n                    {\n                        \"name\": \"'This is My Device' Lifetime\",\n                        \"value\": \"30\"\n                    },\n                    {\n                        \"name\": \"Allow Username Edits During Chaining\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Track Authentication Time\",\n                        \"value\": \"true\"\n                    },\n                    {\n                        \"name\": \"Post-Password Change Re-Authentication Delay\",\n                        \"value\": \"0\"\n                    },\n                    {\n                        \"name\": \"Password Reset Username Template\",\n                        \"value\": \"forgot-password.html\"\n                    },\n                    {\n                        \"name\": \"Password Reset Code Template\",\n                        \"value\": \"forgot-password-resume.html\"\n                    },\n                    {\n                        \"name\": \"Password Reset Template\",\n                        \"value\": \"forgot-password-change.html\"\n                    },\n                    {\n                        \"name\": \"Password Reset Error Template\",\n                        \"value\": \"forgot-password-error.html\"\n                    },\n                    {\n                        \"name\": \"Password Reset Success Template\",\n                        \"value\": \"forgot-password-success.html\"\n                    },\n                    {\n                        \"name\": \"Account Unlock Template\",\n                        \"value\": \"account-unlock.html\"\n                    },\n                    {\n                        \"name\": \"OTP Length\",\n                        \"value\": \"8\"\n                    },\n                    {\n                        \"name\": \"OTP Time to Live\",\n                        \"value\": \"10\"\n                    },\n                    {\n                        \"name\": \"Require Verified Email\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"Username Recovery Template\",\n                        \"value\": \"username.recovery.template.html\"\n                    },\n                    {\n                        \"name\": \"Username Recovery Info Template\",\n                        \"value\": \"username.recovery.info.template.html\"\n                    },\n                    {\n                        \"name\": \"Username Recovery Email Template\",\n                        \"value\": \"message-template-username-recovery.html\"\n                    },\n                    {\n                        \"name\": \"CAPTCHA for Authentication\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"CAPTCHA for Password change\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"CAPTCHA for Password Reset\",\n                        \"value\": \"false\"\n                    },\n                    {\n                        \"name\": \"CAPTCHA for Username recovery\",\n                        \"value\": \"false\"\n                    }\n                ]\n            },\n            \"attributeContract\": {\n                \"coreAttributes\": [\n                    {\n                        \"name\": \"policy.action\",\n                        \"masked\": false,\n                        \"pseudonym\": false\n                    },\n                    {\n                        \"name\": \"username\",\n                        \"masked\": false,\n                        \"pseudonym\": true\n                    }\n                ],\n                \"maskOgnlValues\": false\n            },\n            \"attributeMapping\": {\n                \"attributeSources\": [],\n                \"attributeContractFulfillment\": {},\n                \"issuanceCriteria\": {\n                    \"conditionalCriteria\": []\n                }\n            }\n        }"
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/idp/adapters",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"idp",
+										"adapters"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "OAuth Server",
+					"item": [
+						{
+							"name": "Enable OIDC SLO",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Enable OIDC SLO\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"id": "89bdb3ac-352e-4b5d-a489-0d7e72ab3828"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Xsrf-Header",
+										"value": "PingFederate"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"defaultScopeDescription\": \"\",\n    \"scopes\": [],\n    \"scopeGroups\": [],\n    \"exclusiveScopes\": [],\n    \"exclusiveScopeGroups\": [],\n    \"authorizationCodeTimeout\": 60,\n    \"authorizationCodeEntropy\": 30,\n    \"persistentGrantLifetime\": -1,\n    \"persistentGrantLifetimeUnit\": \"DAYS\",\n    \"persistentGrantIdleTimeout\": 30,\n    \"persistentGrantIdleTimeoutTimeUnit\": \"DAYS\",\n    \"refreshTokenLength\": 42,\n    \"rollRefreshTokenValues\": false,\n    \"refreshRollingInterval\": 0,\n    \"persistentGrantReuseGrantTypes\": [\n        \"IMPLICIT\"\n    ],\n    \"persistentGrantContract\": {\n        \"extendedAttributes\": [],\n        \"coreAttributes\": [\n            {\n                \"name\": \"USER_KEY\"\n            },\n            {\n                \"name\": \"USER_NAME\"\n            }\n        ]\n    },\n    \"bypassAuthorizationForApprovedGrants\": false,\n    \"allowUnidentifiedClientROCreds\": false,\n    \"allowUnidentifiedClientExtensionGrants\": false,\n    \"userAuthorizationUrl\": \"\",\n    \"registeredAuthorizationPath\": \"\",\n    \"pendingAuthorizationTimeout\": 600,\n    \"bypassActivationCodeConfirmation\": false,\n    \"devicePollingInterval\": 5,\n    \"userAuthorizationConsentPageSetting\": \"INTERNAL\",\n    \"allowedOrigins\": [],\n    \"trackUserSessionsForLogout\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"oauth",
+										"authServerSettings"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "OAuth Config",
+					"item": [
+						{
+							"name": "Scope Management",
+							"item": [
+								{
+									"name": "Create Scope openid",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Scope (openid) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "807578de-e2e7-428d-b0bc-dc7e660ab91f"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-XSRF-Header",
+												"value": "PingFederate",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"openid\",\n  \"description\": \"Used to authenticated with OIDC\",\n  \"dynamic\": \"false\"\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings/scopes/commonScopes",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"authServerSettings",
+												"scopes",
+												"commonScopes"
+											]
+										},
+										"description": "Create Common OIDC Scope openid"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Scope address",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Scope (address) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "2483af53-8a8f-47e8-aade-9e8cdf7863e0"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-XSRF-Header",
+												"type": "text",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"address\",\n  \"description\": \"Used to access your postal address\",\n  \"dynamic\": \"false\"\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings/scopes/commonScopes",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"authServerSettings",
+												"scopes",
+												"commonScopes"
+											]
+										},
+										"description": "Create Common OIDC Scope address"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Scope email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Scope (email) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "75402ef9-7f4c-4eaf-9717-1033f6381c00"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-XSRF-Header",
+												"type": "text",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"email\",\n  \"description\": \"Used to access your email address\",\n  \"dynamic\": \"false\"\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings/scopes/commonScopes",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"authServerSettings",
+												"scopes",
+												"commonScopes"
+											]
+										},
+										"description": "Create Common OIDC Scope email"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Scope phone",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Scope (phone) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "5b563d79-6765-4dd1-a21b-dc78a700edb3"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-XSRF-Header",
+												"type": "text",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"phone\",\n  \"description\": \"Used to access your phone number\",\n  \"dynamic\": \"false\"\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings/scopes/commonScopes",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"authServerSettings",
+												"scopes",
+												"commonScopes"
+											]
+										},
+										"description": "Create Common OIDC Scope phone"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Scope profile",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Scope (profile) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "e0111662-bd23-4248-84e8-06082a695fb6"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-XSRF-Header",
+												"type": "text",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"profile\",\n  \"description\": \"Used to access your profile\",\n  \"dynamic\": \"false\"\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings/scopes/commonScopes",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"authServerSettings",
+												"scopes",
+												"commonScopes"
+											]
+										},
+										"description": "Create Common OIDC Scope profile"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Scope edit",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Scope (profile) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "16c9d02e-f72f-432a-8c49-31ac7c65a588"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-XSRF-Header",
+												"type": "text",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"name\": \"edit\",\n  \"description\": \"Used for PAQuickStart API App use case\",\n  \"dynamic\": \"false\"\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/authServerSettings/scopes/commonScopes",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"authServerSettings",
+												"scopes",
+												"commonScopes"
+											]
+										},
+										"description": "Create Common OIDC Scope edit"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Grant Mapping",
+							"item": [
+								{
+									"name": "Create IDP Adapter Mapping",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"IDP Adapter Mapping Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "e33f85cb-4c6f-4f2a-8678-e62b1c745d69"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "        {\n            \"attributeSources\": [],\n            \"attributeContractFulfillment\": {\n                \"USER_NAME\": {\n                    \"source\": {\n                        \"type\": \"ADAPTER\"\n                    },\n                    \"value\": \"username\"\n                },\n                \"USER_KEY\": {\n                    \"source\": {\n                        \"type\": \"ADAPTER\"\n                    },\n                    \"value\": \"username\"\n                }\n            },\n            \"issuanceCriteria\": {\n                \"conditionalCriteria\": []\n            },\n            \"id\": \"{{idpAdapterId}}\",\n            \"idpAdapterRef\": {\n                \"id\": \"{{idpAdapterId}}\"\n            }\n        }"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/idpAdapterMappings",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"idpAdapterMappings"
+											]
+										},
+										"description": "Create the Persistent Grant IDP Adapter Mapping"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Resource Owner Credential Mapping",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Resource Owner Credential Mapping Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "85f0bb59-43c2-4a42-a1c6-a5617eb49cb1"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "        {\n            \"attributeSources\": [],\n            \"attributeContractFulfillment\": {\n                \"USER_KEY\": {\n                    \"source\": {\n                        \"type\": \"PASSWORD_CREDENTIAL_VALIDATOR\"\n                    },\n                    \"value\": \"username\"\n                }\n            },\n            \"issuanceCriteria\": {\n                \"conditionalCriteria\": []\n            },\n            \"id\": \"{{pcvId}}\",\n            \"passwordValidatorRef\": {\n                \"id\": \"{{pcvId}}\"\n            }\n        }"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/resourceOwnerCredentialsMappings",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"resourceOwnerCredentialsMappings"
+											]
+										},
+										"description": "Create Resource Owner Credential Mapping"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Token Mapping",
+							"item": [
+								{
+									"name": "Create Default Token Manager",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Access Token Manager (Default) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "722c92c3-6f1e-4146-a61c-9f3a5afbc4f5"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-XSRF-Header",
+												"type": "text",
+												"value": "pingfederate"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\": \"PAQuickStart\",\n    \"name\": \"Internally Managed Reference Tokens\",\n    \"pluginDescriptorRef\": {\n        \"id\": \"org.sourceid.oauth20.token.plugin.impl.ReferenceBearerAccessTokenManagementPlugin\"\n    },\n    \"configuration\": {\n        \"tables\": [],\n        \"fields\": [\n            {\n                \"name\": \"Token Length\",\n                \"value\": \"28\"\n            },\n            {\n                \"name\": \"Token Lifetime\",\n                \"value\": \"120\"\n            },\n            {\n                \"name\": \"Lifetime Extension Policy\",\n                \"value\": \"NONE\"\n            },\n            {\n                \"name\": \"Maximum Token Lifetime\",\n                \"value\": \"\"\n            },\n            {\n                \"name\": \"Lifetime Extension Threshold Percentage\",\n                \"value\": \"30\"\n            },\n            {\n                \"name\": \"Mode for Synchronous RPC\",\n                \"value\": \"3\"\n            },\n            {\n                \"name\": \"RPC Timeout\",\n                \"value\": \"500\"\n            }\n        ]\n    },\n    \"attributeContract\": {\n        \"coreAttributes\": [],\n        \"extendedAttributes\": [\n            {\n                \"name\": \"Username\"\n            },\n            {\n                \"name\": \"OrgName\"\n            }\n        ]\n    },\n    \"selectionSettings\": {\n        \"resourceUris\": []\n    },\n    \"accessControlSettings\": {\n        \"restrictClients\": false,\n        \"allowedClients\": []\n    },\n    \"sessionValidationSettings\": {\n        \"checkValidAuthnSession\": false,\n        \"checkSessionRevocationStatus\": false,\n        \"updateAuthnSessionActivity\": false\n    }\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/accessTokenManagers",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"accessTokenManagers"
+											]
+										},
+										"description": "Create a default (Internally Managed) Access Token Manager"
+									},
+									"response": []
+								},
+								{
+									"name": "Create Default Token Mapping",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Token Mapping (Default) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "df0c5503-8119-4df6-bc38-1f1a28edcdb9"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"attributeSources\": [],\n    \"attributeContractFulfillment\": {\n        \"Username\": {\n            \"source\": {\n                \"type\": \"OAUTH_PERSISTENT_GRANT\"\n            },\n            \"value\": \"USER_KEY\"\n        },\n        \"OrgName\": {\n            \"source\": {\n                \"type\": \"TEXT\"\n            },\n            \"value\": \"Acme\"\n        }\n    },\n    \"issuanceCriteria\": {\n        \"conditionalCriteria\": []\n    },\n    \"id\": \"default|default\",\n    \"context\": {\n        \"type\": \"DEFAULT\"\n    },\n    \"accessTokenManagerRef\": {\n        \"id\": \"PAQuickStart\"\n    }\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/accessTokenMappings",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"accessTokenMappings"
+											]
+										},
+										"description": "Create the default Access Token Mapping"
+									},
+									"response": []
+								},
+								{
+									"name": "Create PA-WAM OIDC Policy",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"OIDC Policy (PA-WAM) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "8aa97866-562c-4d61-8f81-e40b2dce162d"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n            \"id\": \"PAQuickStart\",\n            \"name\": \"PAQuickStart\",\n            \"idTokenLifetime\": 5,\n            \"attributeContract\": {\n                \"coreAttributes\": [\n                    {\n                        \"name\": \"sub\"\n                    }\n                ],\n                \"extendedAttributes\": [\n                    {\n                        \"name\": \"email\"\n                    },\n                    {\n                        \"name\": \"group\"\n                    }\n                ]\n            },\n            \"attributeMapping\": {\n                \"attributeSources\": [],\n                \"attributeContractFulfillment\": {\n                    \"sub\": {\n                        \"source\": {\n                            \"type\": \"TOKEN\"\n                        },\n                        \"value\": \"Username\"\n                    },\n                    \"email\": {\n                        \"source\": {\n                            \"type\": \"TEXT\"\n                        },\n                        \"value\": \"auser@example.com\"\n                    },\n                    \"group\": {\n                        \"source\": {\n                            \"type\": \"TEXT\"\n                        },\n                        \"value\": \"sales\"\n                    }\n                },\n                \"issuanceCriteria\": {\n                    \"conditionalCriteria\": []\n                }\n            },\n            \"includeSriInIdToken\": true,\n            \"includeUserInfoInIdToken\": false,\n            \"includeSHashInIdToken\": false,\n            \"accessTokenManagerRef\": {\n                \"id\": \"PAQuickStart\"\n            },\n            \"scopeAttributeMappings\": {}\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/openIdConnect/policies",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"openIdConnect",
+												"policies"
+											]
+										},
+										"description": "Create PA-WAM OIDC Policy"
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Clients",
+							"item": [
+								{
+									"name": "Create api_implicit Client",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2066f172-7d8b-47f0-b040-50646fd2ffa0",
+												"exec": [
+													"pm.test(\"OAuth Client (api_implicit) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"clientId\": \"api_implicit\",\n    \"enabled\": true,\n    \"redirectUris\": [\n        \"https://{{paHost}}:3000/PingAccessQuickStart/api-demo\"\n    ],\n    \"grantTypes\": [\n        \"IMPLICIT\"\n    ],\n    \"name\": \"Implicit API Client\",\n    \"refreshRolling\": \"SERVER_DEFAULT\",\n    \"persistentGrantExpirationType\": \"SERVER_DEFAULT\",\n    \"persistentGrantExpirationTime\": 0,\n    \"persistentGrantExpirationTimeUnit\": \"DAYS\",\n    \"persistentGrantIdleTimeoutType\": \"SERVER_DEFAULT\",\n    \"persistentGrantIdleTimeout\": 0,\n    \"persistentGrantIdleTimeoutTimeUnit\": \"DAYS\",\n    \"bypassApprovalPage\": false,\n    \"restrictScopes\": false,\n    \"restrictedScopes\": [],\n    \"exclusiveScopes\": [],\n    \"restrictedResponseTypes\": [],\n    \"validateUsingAllEligibleAtms\": false,\n    \"oidcPolicy\": {\n        \"grantAccessSessionRevocationApi\": false,\n        \"pingAccessLogoutCapable\": false\n    },\n    \"clientAuth\": {\n        \"type\": \"NONE\",\n        \"enforceReplayPrevention\": false\n    },\n    \"extendedParameters\": {},\n    \"deviceFlowSettingType\": \"SERVER_DEFAULT\",\n    \"requireSignedRequests\": false\n}"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/clients",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"clients"
+											]
+										},
+										"description": "Create the api_implicit OAuth Client.  This client is used to demonstrate the PA QuickStart API protection flow."
+									},
+									"response": []
+								},
+								{
+									"name": "Create pa_rs Client",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"OAuth Client (pa_rs) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"id": "b9b4e9e1-1591-4b34-a7be-9f21d998dcc0"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"clientId\": \"pa_rs\",\n    \"enabled\": true,\n    \"redirectUris\": [],\n    \"grantTypes\": [\n        \"ACCESS_TOKEN_VALIDATION\"\n    ],\n    \"name\": \"PingAccess Resource Server\",\n    \"refreshRolling\": \"SERVER_DEFAULT\",\n    \"persistentGrantExpirationType\": \"SERVER_DEFAULT\",\n    \"persistentGrantExpirationTime\": 0,\n    \"persistentGrantExpirationTimeUnit\": \"DAYS\",\n    \"persistentGrantIdleTimeoutType\": \"SERVER_DEFAULT\",\n    \"persistentGrantIdleTimeout\": 0,\n    \"persistentGrantIdleTimeoutTimeUnit\": \"DAYS\",\n    \"bypassApprovalPage\": false,\n    \"restrictScopes\": false,\n    \"restrictedScopes\": [],\n    \"exclusiveScopes\": [],\n    \"restrictedResponseTypes\": [],\n    \"validateUsingAllEligibleAtms\": false,\n    \"oidcPolicy\": {\n        \"grantAccessSessionRevocationApi\": false,\n        \"pingAccessLogoutCapable\": false\n    },\n    \"clientAuth\": {\n        \"type\": \"SECRET\",\n        \"secret\": \"{{clientSecret}}\",\n                \"enforceReplayPrevention\": false\n            },\n            \"extendedParameters\": {},\n            \"deviceFlowSettingType\": \"SERVER_DEFAULT\",\n            \"requireSignedRequests\": false\n        }"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/clients",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"clients"
+											]
+										},
+										"description": "Create the pa_rs Client. PA uses this client to validate PF issues access_tokens."
+									},
+									"response": []
+								},
+								{
+									"name": "Create pa_wam Client",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "5d828bc0-36dd-40f7-a62b-7b006e22f321",
+												"exec": [
+													"pm.test(\"OAuth Client (pa_wam) Created\", function () {",
+													"    pm.response.to.have.status(201);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "basic",
+											"basic": [
+												{
+													"key": "username",
+													"value": "{{pfUn}}",
+													"type": "string"
+												},
+												{
+													"key": "password",
+													"value": "{{pfPw}}",
+													"type": "string"
+												},
+												{
+													"key": "showPassword",
+													"value": false,
+													"type": "boolean"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "X-Xsrf-Header",
+												"value": "PingFederate"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "        {\n            \"clientId\": \"pa_wam\",\n            \"enabled\": true,\n            \"redirectUris\": [\n                \"https://{{paHost}}:3000/pa/oidc/cb\"\n            ],\n            \"grantTypes\": [\n                \"AUTHORIZATION_CODE\"\n            ],\n            \"name\": \"PingAccess WAM\",\n            \"description\": \"\",\n            \"logoUrl\": \"\",\n            \"refreshRolling\": \"SERVER_DEFAULT\",\n            \"persistentGrantExpirationType\": \"SERVER_DEFAULT\",\n            \"persistentGrantExpirationTime\": 0,\n            \"persistentGrantExpirationTimeUnit\": \"DAYS\",\n            \"persistentGrantIdleTimeoutType\": \"SERVER_DEFAULT\",\n            \"persistentGrantIdleTimeout\": 0,\n            \"persistentGrantIdleTimeoutTimeUnit\": \"DAYS\",\n            \"bypassApprovalPage\": true,\n            \"restrictScopes\": false,\n            \"restrictedScopes\": [],\n            \"exclusiveScopes\": [],\n            \"restrictedResponseTypes\": [],\n            \"validateUsingAllEligibleAtms\": false,\n            \"oidcPolicy\": {\n                \"grantAccessSessionRevocationApi\": false,\n                \"pingAccessLogoutCapable\": true\n            },\n            \"clientAuth\": {\n                \"type\": \"SECRET\",\n                \"secret\": \"{{clientSecret}}\",\n                \"enforceReplayPrevention\": false\n            },\n            \"extendedParameters\": {},\n            \"deviceFlowSettingType\": \"SERVER_DEFAULT\",\n            \"requireSignedRequests\": false\n        }"
+										},
+										"url": {
+											"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/oauth/clients",
+											"protocol": "https",
+											"host": [
+												"{{pfHost}}"
+											],
+											"port": "9999",
+											"path": [
+												"pf-admin-api",
+												"v1",
+												"oauth",
+												"clients"
+											]
+										},
+										"description": "Create the pa_wam OAuth Client.  This client is tied to the PA QuickStart app's Web Session policy in PA and is responsible for generating a PA Cookie when the user is authorized for the PA QuickStart app."
+									},
+									"response": []
+								}
+							],
+							"protocolProfileBehavior": {},
+							"_postman_isSubFolder": true
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Redirect Validation",
+					"item": [
+						{
+							"name": "Enable SLO Redirect",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "929958d8-9c82-44db-b236-468a7b7611bb",
+										"exec": [
+											"pm.test(\"Enable SLO Redirect\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Xsrf-Header",
+										"value": "PingFederate"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"redirectValidationLocalSettings\": {\n        \"enableTargetResourceValidationForSSO\": true,\n        \"enableTargetResourceValidationForSLO\": true,\n        \"enableTargetResourceValidationForIdpDiscovery\": true,\n        \"enableInErrorResourceValidation\": true,\n        \"whiteList\": [\n            {\n                \"validDomain\": \"{{paHost}}\",\n                \"validPath\": \"\",\n                \"allowQueryAndFragment\": false,\n                \"requireHttps\": true,\n                \"targetResourceSSO\": true,\n                \"idpDiscovery\": false,\n                \"inErrorResource\": false,\n                \"targetResourceSLO\": true\n            }\n        ]\n    },\n    \"redirectValidationPartnerSettings\": {\n        \"enableWreplyValidationSLO\": true\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/redirectValidation",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"redirectValidation"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Primary SSL Certs",
+					"item": [
+						{
+							"name": "Get Primary PF  Runtime Cert",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8818fa89-99f7-438c-be56-175bdbe1b268",
+										"exec": [
+											"pm.test(\"Get Primary PF Runtime Cert\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"pfCertId\", response.runtimeServerCertRef.id);",
+											"",
+											"    if (pm.environment.get(\"pfHost\") == \"localhost\") {",
+											"        postman.setNextRequest(\"Create API Scope Rule\");",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/keyPairs/sslServer/settings",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"keyPairs",
+										"sslServer",
+										"settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Generate Primary PF Cert for Scalar",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2fc7602a-06bc-4283-96d6-84bed6a12d4b",
+										"exec": [
+											"pm.test(\"Generate Primary PF Cert for Scalar\", function () {",
+											"    pm.response.to.have.status(201);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"pfCertId\", response.id);",
+											"",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Xsrf-Header",
+										"value": "PingFederate"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"commonName\": \"{{pfHost}}\",\n    \"subjectAlternativeNames\": [\n      \"{{serverName}}\",\n      \"{{pfHost}}\",\n      \"localhost\"\n    ],\n    \"organization\": \"PingIdentity\",\n    \"organizationUnit\": \"Development\",\n    \"city\": \"Denver\",\n    \"state\": \"CO\",\n    \"country\": \"US\",\n    \"validDays\": 3650,\n    \"keyAlgorithm\": \"RSA\",\n    \"keySize\": \"2048\",\n    \"signatureAlgorithm\": \"SHA256withRSA\"\n}"
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/keyPairs/sslServer/generate",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"keyPairs",
+										"sslServer",
+										"generate"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Set PF Primary Runtime & Admin Cert",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6ffcc1ff-d316-4338-bdcd-491b4d434257",
+										"exec": [
+											"pm.test(\"Set PF Primary Runtime & Admin Cert\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Xsrf-Header",
+										"value": "PingFederate"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"runtimeServerCertRef\": {\n    \"id\": \"{{pfCertId}}\"\n  },\n  \"adminConsoleCertRef\": {\n    \"id\": \"{{pfCertId}}\"\n  },\n    \"activeRuntimeServerCerts\": [\n        {\n            \"id\": \"{{pfCertId}}\"\n        }\n    ],\n    \"activeAdminConsoleCerts\": [\n        {\n            \"id\": \"{{pfCertId}}\"\n        }\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/keyPairs/sslServer/settings",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"keyPairs",
+										"sslServer",
+										"settings"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Server Settings",
+					"item": [
+						{
+							"name": "Update Federation Settings for PF Host",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "432af764-1367-4183-ad78-2a70e5d3e3ba",
+										"exec": [
+											"pm.test(\"Update Federation Settings for PF Host\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{pfUn}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Xsrf-Header",
+										"value": "PingFederate"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"contactInfo\": {},\n    \"rolesAndProtocols\": {\n        \"oauthRole\": {\n            \"enableOauth\": true,\n            \"enableOpenIdConnect\": true\n        },\n        \"idpRole\": {\n            \"enable\": true,\n            \"enableSaml11\": true,\n            \"enableSaml10\": true,\n            \"enableWsFed\": true,\n            \"enableWsTrust\": true,\n            \"saml20Profile\": {\n                \"enable\": true\n            },\n            \"enableOutboundProvisioning\": true\n        },\n        \"spRole\": {\n            \"enable\": true,\n            \"enableSaml11\": true,\n            \"enableSaml10\": true,\n            \"enableWsFed\": true,\n            \"enableWsTrust\": true,\n            \"saml20Profile\": {\n                \"enable\": true,\n                \"enableXASP\": true\n            },\n            \"enableInboundProvisioning\": true,\n            \"enableOpenIDConnect\": true\n        },\n        \"enableIdpDiscovery\": true\n    },\n    \"federationInfo\": {\n        \"baseUrl\": \"https://{{pfHost}}:9031\",\n        \"saml2EntityId\": \"{{pfHost}}:default:entityId\",\n        \"saml1xIssuerId\": \"{{pfHost}}:default:entityId\",\n        \"saml1xSourceId\": \"\",\n        \"wsfedRealm\": \"\"\n    },\n    \"notifications\": {\n        \"notifyAdminUserPasswordChanges\": false\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/serverSettings",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"serverSettings"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PA Config",
+			"item": [
+				{
+					"name": "Rules",
+					"item": [
+						{
+							"name": "Create API Scope Rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"API Edit Scope Rule Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"scopeRuleId\", response.id);",
+											"});"
+										],
+										"id": "6abfc5bf-e3c1-43a5-a181-446d3eee5c51"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"className\": \"com.pingidentity.pa.policy.OAuthScopePolicyInterceptor\",\n    \"name\": \"OAuth Edit Permission\",\n    \"supportedDestinations\": [\n        \"Site\",\n        \"Agent\"\n    ],\n    \"configuration\": {\n        \"rejectionHandlingEnabled\": false,\n        \"rejectionHandler\": null,\n        \"errorResponseCode\": 403,\n        \"errorResponseStatusMsg\": \"Forbidden\",\n        \"errorResponseTemplateFile\": \"oauth.error.json\",\n        \"errorResponseContentType\": \"application/json;charset=utf-8\",\n        \"scope\": \"edit\",\n        \"negate\": false\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/rules",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"rules"
+									]
+								},
+								"description": "Create API Scope Rule for the API use case"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Attribute Value Rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Attribute Value Rule Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"attrRuleId\", response.id);",
+											"});"
+										],
+										"id": "0aa1d0c5-736f-49e9-b043-0c53cdefcc48"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"className\": \"com.pingidentity.pa.policy.OAuthAttributeValuePolicyInterceptor\",\n    \"name\": \"OAuth Org\",\n    \"supportedDestinations\": [\n        \"Site\",\n        \"Agent\"\n    ],\n    \"configuration\": {\n        \"rejectionHandlingEnabled\": false,\n        \"rejectionHandler\": null,\n        \"errorResponseCode\": 403,\n        \"errorResponseStatusMsg\": \"Forbidden\",\n        \"errorResponseTemplateFile\": \"oauth.error.json\",\n        \"errorResponseContentType\": \"application/json;charset=utf-8\",\n        \"oauthAttributeTable\": [\n            {\n                \"attributeName\": \"OrgName\",\n                \"attributeValue\": \"Acme\"\n            }\n        ],\n        \"negate\": false\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/rules",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"rules"
+									]
+								},
+								"description": "Create Attribute Value Rule for the OrgName attribute and the Web App use case"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Web Session Rule",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Web Session Rule Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"webRuleId\", response.id);",
+											"});"
+										],
+										"id": "5c64c37e-f186-4fa4-9c51-daac4dc5549e"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"className\": \"com.pingidentity.pa.policy.WebSessionTableAttributePolicyInterceptor\",\n    \"name\": \"Web Session Rule\",\n    \"supportedDestinations\": [\n        \"Site\",\n        \"Agent\"\n    ],\n    \"configuration\": {\n        \"rejectionHandlingEnabled\": true,\n        \"rejectionHandler\": \"1\",\n        \"errorResponseCode\": 403,\n        \"errorResponseStatusMsg\": \"Forbidden\",\n        \"errorResponseTemplateFile\": \"policy.error.page.template.html\",\n        \"errorResponseContentType\": \"text/html;charset=UTF-8\",\n        \"webSessionAttributeTable\": [\n            {\n                \"attributeName\": \"group\",\n                \"attributeValue\": \"sales\"\n            }\n        ],\n        \"negate\": false\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/rules",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"rules"
+									]
+								},
+								"description": "Create Web Session Rule for the Web App use case"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Rule Sets",
+					"item": [
+						{
+							"name": "Create API Rule Set",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"API Rule Set Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"apiRSId\", response.id);    ",
+											"});"
+										],
+										"id": "874f1728-4d34-4105-9c76-85b2ad7b082b"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"API Policy\",\n    \"successCriteria\": \"SuccessIfAllSucceed\",\n    \"elementType\": \"Rule\",\n    \"policy\": [\n        {{scopeRuleId}},\n        {{attrRuleId}}\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/rulesets",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"rulesets"
+									]
+								},
+								"description": "Create the API Rule Set for the API use case"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Identity Mappings",
+					"item": [
+						{
+							"name": "Create API Identity Mapping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"API Identity Mapping Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"apiMapId\", response.id);",
+											"});"
+										],
+										"id": "0bd7aaee-8451-4460-ba52-31853dd5e786"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\n            \"className\": \"com.pingidentity.pa.identitymappings.HeaderIdentityMapping\",\n            \"name\": \"API Identity Mapping\",\n            \"configuration\": {\n                \"attributeHeaderMappings\": [\n                    {\n                        \"subject\": true,\n                        \"attributeName\": \"Username\",\n                        \"headerName\": \"X-USER\"\n                    }\n                ],\n                \"headerClientCertificateMappings\": []\n            }\n        }"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/identityMappings",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"identityMappings"
+									]
+								},
+								"description": "Create API Identity Mapping for the API use case"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Web Identity Mapping",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Web Identity Mapping Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"webMapId\", response.id);",
+											"});"
+										],
+										"id": "d277cadc-b3f3-4da6-b66d-4c58a42695ca"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\n            \"className\": \"com.pingidentity.pa.identitymappings.HeaderIdentityMapping\",\n            \"name\": \"Web Identity Mapping\",\n            \"configuration\": {\n                \"attributeHeaderMappings\": [\n                    {\n                        \"subject\": true,\n                        \"attributeName\": \"sub\",\n                        \"headerName\": \"X-USER\"\n                    },\n                    {\n                        \"subject\": false,\n                        \"attributeName\": \"group\",\n                        \"headerName\": \"X-GROUP\"\n                    }\n                ],\n                \"headerClientCertificateMappings\": []\n            }\n        }"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/identityMappings",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"identityMappings"
+									]
+								},
+								"description": "Create Web Identity Mapping for the Web App use case"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Web Sessions",
+					"item": [
+						{
+							"name": "Create Web Session",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Web Session Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"webSessionId\", response.id);",
+											"});"
+										],
+										"id": "7cb8aa67-83b4-4591-ab7c-7d857ecd2515"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"PAQuickStart\",\n    \"idleTimeoutInMinutes\": 5,\n    \"sessionTimeoutInMinutes\": 30,\n    \"requestPreservationType\": \"POST\",\n    \"validateSessionIsAlive\": false,\n    \"webStorageType\": \"SessionStorage\",\n    \"clientCredentials\": {\n        \"clientId\": \"pa_wam\",\n        \"clientSecret\": {\n            \"value\": \"{{clientSecret}}\"\n        }\n    },\n    \"cacheUserAttributes\": false,\n    \"enableRefreshUser\": true,\n    \"sendRequestedUrlToProvider\": true,\n    \"refreshUserInfoClaimsInterval\": 60,\n    \"httpOnlyCookie\": false,\n    \"requestProfile\": true,\n    \"scopes\": [\n        \"profile\",\n        \"address\",\n        \"email\",\n        \"phone\"\n    ],\n    \"oidcLoginType\": \"Code\",\n    \"cookieDomain\": null,\n    \"cookieType\": \"Encrypted\",\n    \"audience\": \"global\",\n    \"secureCookie\": true,\n    \"pfsessionStateCacheInSeconds\": 60\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/webSessions",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"webSessions"
+									]
+								},
+								"description": "Create Web Session for the Web App use case"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Trusted Certificate Group",
+					"item": [
+						{
+							"name": "Get Primary PF Server Cert ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Get Primary PF SSL Cert\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"pfCertId\", response.runtimeServerCertRef.id);",
+											"});"
+										],
+										"id": "8818fa89-99f7-438c-be56-175bdbe1b268"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/keyPairs/sslServer/settings",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"keyPairs",
+										"sslServer",
+										"settings"
+									]
+								},
+								"description": "Get Primary PF Server Cert to in order to download the actual certificate data"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Primary PF Server Cert Data",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Get Primary PF SSL Cert Data\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    pm.environment.set(\"pfCertData\", pm.response.text());",
+											"});"
+										],
+										"id": "a443147d-d8a8-4094-81d5-155b6628e58f"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "https://{{pfHost}}:9999/pf-admin-api/v1/keyPairs/sslServer/{{pfCertId}}/certificate",
+									"protocol": "https",
+									"host": [
+										"{{pfHost}}"
+									],
+									"port": "9999",
+									"path": [
+										"pf-admin-api",
+										"v1",
+										"keyPairs",
+										"sslServer",
+										"{{pfCertId}}",
+										"certificate"
+									]
+								},
+								"description": "Get the Primary PF Server Cert Data"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Certificate for PF",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Certificate for PF Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"certId\", response.id);",
+											"});"
+										],
+										"id": "590b185a-f8ab-4cc6-b419-4a7fa84d8cca"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "alias",
+											"value": "PAQuickStart",
+											"type": "text"
+										},
+										{
+											"key": "fileData",
+											"value": "{{pfCertData}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/certificates",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"certificates"
+									]
+								},
+								"description": "Create Certificate for PF"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Trusted Certificate Group",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Trusted Certidicate Group Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"certGroupId\", response.id);",
+											"});"
+										],
+										"id": "4f9f2aea-0c93-413c-8afd-0506bee7327a"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"PAQuickStart Trusted Group\",\n    \"useJavaTrustStore\": true,\n    \"systemGroup\": false,\n    \"ignoreAllCertificateErrors\": false,\n    \"skipCertificateDateCheck\": true,\n    \"certIds\": [\n        {{certId}}\n    ]\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/trustedCertificateGroups",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"trustedCertificateGroups"
+									]
+								},
+								"description": "Create Trusted Certificate Group for PAQuickStart Site"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Sites",
+					"item": [
+						{
+							"name": "Create Site",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a70d9ac6-d165-4abd-8eef-cd84f899f8d7",
+										"exec": [
+											"pm.test(\"Site Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"siteId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"QuickStart\",\n    \"targets\": [\n        \"{{pfHost}}:9031\"\n    ],\n    \"secure\": true,\n    \"trustedCertificateGroupId\": {{certGroupId}},\n    \"sendPaCookie\": true,\n    \"useTargetHostHeader\": false,\n    \"keepAliveTimeout\": 0,\n    \"maxConnections\": 10,\n    \"maxWebSocketConnections\": -1,\n    \"siteAuthenticatorIds\": [],\n    \"skipHostnameVerification\": true,\n    \"expectedHostname\": null,\n    \"availabilityProfileId\": 1,\n    \"loadBalancingStrategyId\": 0,\n    \"useProxy\": false\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/sites",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"sites"
+									]
+								},
+								"description": "Create Site for PAQuickStart"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "PF Token Provider (Optional)",
+					"item": [
+						{
+							"name": "Updtae PF Admin Config",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "20c70945-a054-407e-92cf-7b3c3d9b2077",
+										"exec": [
+											"pm.test(\"PF Admin Config Set\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    // var response = pm.response.json();",
+											"    // pm.environment.set(\"siteId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"adminUsername\": \"{{pfUn}}\",\n    \"adminPassword\": {\n        \"value\": \"{{pfPw}}\"\n    },\n    \"host\": \"{{pfHost}}\",\n    \"port\": 9999,\n    \"basePath\": \"\",\n    \"auditLevel\": \"OFF\",\n    \"useProxy\": false,\n    \"secure\": true,\n    \"trustedCertificateGroupId\": {{certGroupId}}\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/pingfederate/admin",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"pingfederate",
+										"admin"
+									]
+								},
+								"description": "Set the PF Admin Token Provider configuration"
+							},
+							"response": []
+						},
+						{
+							"name": "Update PF Engine Config",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "30d9800d-bfa5-4347-93a0-5c58ae5d17c9",
+										"exec": [
+											"pm.test(\"PF Engine Config Set\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    // var response = pm.response.json();",
+											"    // pm.environment.set(\"siteId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"PingFederate\",\n  \"issuer\": \"https://{{pfHost}}:9031\",\n  \"skipHostnameVerification\": true,\n  \"trustedCertificateGroupId\": {{certGroupId}},\n  \"useProxy\": false,\n  \"useSlo\": true\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/pingfederate/runtime",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"pingfederate",
+										"runtime"
+									]
+								},
+								"description": "Set the PF Engine Token Provider configuration"
+							},
+							"response": []
+						},
+						{
+							"name": "Update PF Auth Server Config",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"PF Auth Server Config Set\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    // var response = pm.response.json();",
+											"    // pm.environment.set(\"siteId\", response.id);",
+											"});"
+										],
+										"id": "8929a63f-c021-4cf5-98ca-c7a296dc2eeb"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"PingFederate\",\n    \"clientId\": \"pa_rs\",\n    \"clientSecret\": {\n        \"value\": \"{{clientSecret}}\"\n    },\n    \"cacheTokens\": true,\n    \"tokenTimeToLiveSeconds\": -1,\n    \"subjectAttributeName\": \"Username\",\n    \"sendAudience\": false,\n    \"accessValidatorId\": 1,\n    \"useTokenIntrospection\": false\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/pingfederate/accessTokens",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"pingfederate",
+										"accessTokens"
+									]
+								},
+								"description": "Set the PF Authroization Server Token Provider configuration"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Virtual Host",
+					"item": [
+						{
+							"name": "Check for PA Virtual Host",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6392a048-cb24-4df1-b042-abbe6e42e615",
+										"exec": [
+											"pm.test(\"Checking for PA Virtual Host\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    ",
+											"    if (response.items.length === 0) ",
+											"    {",
+											"        postman.setNextRequest(\"Create PA Virtual Host\");",
+											"    }",
+											"    else ",
+											"    {",
+											"        pm.environment.set(\"pAVirtualHostId\", response.items[0].id);",
+											"        postman.setNextRequest(\"Check for PF Virtual Host\");",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/virtualhosts?virtualHost={{paHost}}",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"virtualhosts"
+									],
+									"query": [
+										{
+											"key": "virtualHost",
+											"value": "{{paHost}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create PA Virtual Host",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b80ad022-7da5-432d-9260-c889d9287aef",
+										"exec": [
+											"pm.test(\"PA Virtual Host Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"paVirtualHostId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"agentResourceCacheTTL\": 900,\n  \"host\": \"{{paHost}}\",\n  \"keyPairId\": 0,\n  \"port\": 3000,\n  \"trustedCertificateGroupId\": 0\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/virtualhosts",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"virtualhosts"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check for PF Virtual Host",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6392a048-cb24-4df1-b042-abbe6e42e615",
+										"exec": [
+											"pm.test(\"Checking for PF Virtual Host\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    ",
+											"    if (response.items.length === 0) ",
+											"    {",
+											"        postman.setNextRequest(\"Create PF Virtual Host\");",
+											"    }",
+											"    else ",
+											"    {",
+											"        pm.environment.set(\"pfVirtualHostId\", response.items[0].id);",
+											"        postman.setNextRequest(\"Create API Application\");",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/virtualhosts?virtualHost={{pfHost}}",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"virtualhosts"
+									],
+									"query": [
+										{
+											"key": "virtualHost",
+											"value": "{{pfHost}}"
+										}
+									]
+								},
+								"description": "Check to see if there is a Virtual Host setup for PF"
+							},
+							"response": []
+						},
+						{
+							"name": "Create PF Virtual Host",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b80ad022-7da5-432d-9260-c889d9287aef",
+										"exec": [
+											"pm.test(\"PF Virtual Host Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"pfVirtualHostId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"agentResourceCacheTTL\": 900,\n  \"host\": \"{{pfHost}}\",\n  \"keyPairId\": 0,\n  \"port\": 3000,\n  \"trustedCertificateGroupId\": 0\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/virtualhosts",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"virtualhosts"
+									]
+								},
+								"description": "Create PF Virtual Host since PF host's the PAQuickStart App.  This VH will be used in the PAQuickStart App configuraiton."
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Applications",
+					"item": [
+						{
+							"name": "Create API Application",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "17cbc54f-e674-40ef-9514-5c5b360a95f3",
+										"exec": [
+											"pm.test(\"API Applicaiton Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"apiAppId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"enabled\": true,\n    \"agentCacheInvalidatedResponseDuration\": 900,\n    \"requireHTTPS\": false,\n    \"name\": \"QuickStartAPI\",\n    \"description\": null,\n    \"manualOrderingEnabled\": false,\n    \"resourceOrder\": [],\n    \"applicationType\": \"API\",\n    \"defaultAuthType\": \"API\",\n    \"spaSupportEnabled\": false,\n    \"destination\": \"Site\",\n    \"contextRoot\": \"/PingAccessQuickStart/api\",\n    \"realm\": null,\n    \"caseSensitivePath\": true,\n    \"webSessionId\": 0,\n    \"siteId\": {{siteId}},\n    \"agentId\": 0,\n    \"virtualHostIds\": [\n        {{paVirtualHostId}}\n    ],\n    \"identityMappingIds\": {\n        \"Web\": 0,\n        \"API\": {{apiMapId}}\n    },\n    \"accessValidatorId\": 1,\n    \"policy\": {\n        \"Web\": [],\n        \"API\": [\n            {\n                \"type\": \"RuleSet\",\n                \"id\": {{apiRSId}}\n            }\n        ]\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications"
+									]
+								},
+								"description": "Create PAQuickStart API Application for the API use case"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Web Application",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0b8460ec-7437-4d5c-b64a-40fdbd012945",
+										"exec": [
+											"pm.test(\"Web Applicaiton Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"webAppId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"enabled\": true,\n    \"agentCacheInvalidatedResponseDuration\": 900,\n    \"requireHTTPS\": false,\n    \"name\": \"QuickStartWeb\",\n    \"description\": null,\n    \"manualOrderingEnabled\": false,\n    \"resourceOrder\": [],\n    \"applicationType\": \"Web\",\n    \"defaultAuthType\": \"Web\",\n    \"spaSupportEnabled\": false,\n    \"destination\": \"Site\",\n    \"contextRoot\": \"/PingAccessQuickStart\",\n    \"realm\": null,\n    \"caseSensitivePath\": true,\n    \"webSessionId\": {{webSessionId}},\n    \"siteId\": {{siteId}},\n    \"agentId\": 0,\n    \"virtualHostIds\": [\n        {{paVirtualHostId}}\n    ],\n    \"identityMappingIds\": {\n        \"Web\": {{webMapId}},\n        \"API\": 0\n    },\n    \"accessValidatorId\": 0,\n    \"policy\": {\n        \"Web\": [],\n        \"API\": []\n    }\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications"
+									]
+								},
+								"description": "Create PAQuickStart Web Application for the Web App use case"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Resources",
+					"item": [
+						{
+							"name": "Get Root Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Get Web App's Root Resource\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"rootResourceId\", response.items[0].id);",
+											"});"
+										],
+										"id": "cdfcb2a6-f8e8-43a6-b9c6-0157839aca31"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									}
+								],
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications/2/resources",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications",
+										"2",
+										"resources"
+									]
+								},
+								"description": "Get the resourceId for the Web App's Root Resource."
+							},
+							"response": []
+						},
+						{
+							"name": "Update Root Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Get Web App's Root Resource\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    var response = pm.response.json();",
+											"    pm.environment.set(\"rootResourceId\", response.id);",
+											"});"
+										],
+										"id": "64a3c452-aa81-4ca7-9469-53f08f1d106a"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\n            \"name\": \"Root Resource\",\n            \"methods\": [\n                \"*\"\n            ],\n            \"pathPatterns\": [\n                {\n                    \"pattern\": \"/*\",\n                    \"type\": \"WILDCARD\"\n                }\n            ],\n            \"pathPrefixes\": [\n                \"/*\"\n            ],\n            \"auditLevel\": \"ON\",\n            \"anonymous\": true,\n            \"enabled\": true,\n            \"unprotected\": false,\n            \"policy\": {\n                \"Web\": [],\n                \"API\": []\n            },\n            \"defaultAuthTypeOverride\": null,\n            \"rootResource\": true\n        }"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications/{{webAppId}}/resources/{{rootResourceId}}",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications",
+										"{{webAppId}}",
+										"resources",
+										"{{rootResourceId}}"
+									]
+								},
+								"description": "Update the Web App's Root Resource so it is Anonymous"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Headers Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Headers Resource Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    // var response = pm.response.json();",
+											"    // pm.environment.set(\"apiAppId\", response.id);",
+											"});"
+										],
+										"id": "d2c71dba-2751-4292-93e0-bc1c028b78c6"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "        {\n            \"name\": \"WAM Headers\",\n            \"methods\": [\n                \"*\"\n            ],\n            \"pathPatterns\": [\n                {\n                    \"pattern\": \"/headers\",\n                    \"type\": \"WILDCARD\"\n                }\n            ],\n            \"pathPrefixes\": [\n                \"/headers\"\n            ],\n            \"auditLevel\": \"ON\",\n            \"anonymous\": false,\n            \"enabled\": true,\n            \"unprotected\": false,\n            \"policy\": {\n                \"Web\": [\n                    {\n                        \"type\": \"Rule\",\n                        \"id\": {{webRuleId}}\n                    }\n                ],\n                \"API\": []\n            },\n            \"defaultAuthTypeOverride\": null,\n            \"rootResource\": false,\n            \"applicationId\": {{webAppId}}\n        }"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications/{{webAppId}}/resources",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications",
+										"{{webAppId}}",
+										"resources"
+									]
+								},
+								"description": "Create Headers Resource for the PAQuickStart Web App"
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a854277f-efc2-432f-a451-956a500999a5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "cc53b2e8-2911-40df-81c7-f802e1071606",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
