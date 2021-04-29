@@ -17,7 +17,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9f1bdf9e-afd1-4288-be36-7f3d863e0d0c",
 										"exec": [
 											"pm.test(\"Simple PCV Created\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -97,8 +96,7 @@
 											"pm.test(\"HTML Form Adapter Created\", function () {",
 											"    pm.response.to.have.status(201);",
 											"});"
-										],
-										"id": "05bda125-8649-4034-9e54-418be3077cfe"
+										]
 									}
 								}
 							],
@@ -155,9 +153,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "OAuth Server",
@@ -173,8 +169,7 @@
 											"pm.test(\"Enable OIDC SLO\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});"
-										],
-										"id": "89bdb3ac-352e-4b5d-a489-0d7e72ab3828"
+										]
 									}
 								}
 							],
@@ -232,9 +227,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "OAuth Config",
@@ -253,8 +246,7 @@
 													"pm.test(\"Scope (openid) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "807578de-e2e7-428d-b0bc-dc7e660ab91f"
+												]
 											}
 										}
 									],
@@ -327,8 +319,7 @@
 													"pm.test(\"Scope (address) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "2483af53-8a8f-47e8-aade-9e8cdf7863e0"
+												]
 											}
 										}
 									],
@@ -401,8 +392,7 @@
 													"pm.test(\"Scope (email) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "75402ef9-7f4c-4eaf-9717-1033f6381c00"
+												]
 											}
 										}
 									],
@@ -475,8 +465,7 @@
 													"pm.test(\"Scope (phone) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "5b563d79-6765-4dd1-a21b-dc78a700edb3"
+												]
 											}
 										}
 									],
@@ -549,8 +538,7 @@
 													"pm.test(\"Scope (profile) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "e0111662-bd23-4248-84e8-06082a695fb6"
+												]
 											}
 										}
 									],
@@ -623,8 +611,7 @@
 													"pm.test(\"Scope (profile) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "16c9d02e-f72f-432a-8c49-31ac7c65a588"
+												]
 											}
 										}
 									],
@@ -686,9 +673,7 @@
 									},
 									"response": []
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Grant Mapping",
@@ -704,8 +689,7 @@
 													"pm.test(\"IDP Adapter Mapping Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "e33f85cb-4c6f-4f2a-8678-e62b1c745d69"
+												]
 											}
 										}
 									],
@@ -774,8 +758,7 @@
 													"pm.test(\"Resource Owner Credential Mapping Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "85f0bb59-43c2-4a42-a1c6-a5617eb49cb1"
+												]
 											}
 										}
 									],
@@ -833,9 +816,7 @@
 									},
 									"response": []
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Token Mapping",
@@ -851,8 +832,7 @@
 													"pm.test(\"Access Token Manager (Default) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "722c92c3-6f1e-4146-a61c-9f3a5afbc4f5"
+												]
 											}
 										}
 									],
@@ -924,8 +904,7 @@
 													"pm.test(\"Token Mapping (Default) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "df0c5503-8119-4df6-bc38-1f1a28edcdb9"
+												]
 											}
 										}
 									],
@@ -994,8 +973,7 @@
 													"pm.test(\"OIDC Policy (PA-WAM) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "8aa97866-562c-4d61-8f81-e40b2dce162d"
+												]
 											}
 										}
 									],
@@ -1054,9 +1032,7 @@
 									},
 									"response": []
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Clients",
@@ -1067,7 +1043,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "2066f172-7d8b-47f0-b040-50646fd2ffa0",
 												"exec": [
 													"pm.test(\"OAuth Client (api_implicit) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1142,8 +1117,7 @@
 													"pm.test(\"OAuth Client (pa_rs) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"id": "b9b4e9e1-1591-4b34-a7be-9f21d998dcc0"
+												]
 											}
 										}
 									],
@@ -1207,7 +1181,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "5d828bc0-36dd-40f7-a62b-7b006e22f321",
 												"exec": [
 													"pm.test(\"OAuth Client (pa_wam) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1271,13 +1244,9 @@
 									},
 									"response": []
 								}
-							],
-							"protocolProfileBehavior": {},
-							"_postman_isSubFolder": true
+							]
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Redirect Validation",
@@ -1288,7 +1257,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "929958d8-9c82-44db-b236-468a7b7611bb",
 										"exec": [
 											"pm.test(\"Enable SLO Redirect\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1351,9 +1319,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Primary SSL Certs",
@@ -1364,7 +1330,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8818fa89-99f7-438c-be56-175bdbe1b268",
 										"exec": [
 											"pm.test(\"Get Primary PF Runtime Cert\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1447,7 +1412,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2fc7602a-06bc-4283-96d6-84bed6a12d4b",
 										"exec": [
 											"pm.test(\"Generate Primary PF Cert for Scalar\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -1525,7 +1489,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6ffcc1ff-d316-4338-bdcd-491b4d434257",
 										"exec": [
 											"pm.test(\"Set PF Primary Runtime & Admin Cert\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1593,9 +1556,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Server Settings",
@@ -1606,7 +1567,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "432af764-1367-4183-ad78-2a70e5d3e3ba",
 										"exec": [
 											"pm.test(\"Update Federation Settings for PF Host\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1672,12 +1632,9 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "PA Config",
@@ -1699,8 +1656,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"scopeRuleId\", response.id);",
 											"});"
-										],
-										"id": "6abfc5bf-e3c1-43a5-a181-446d3eee5c51"
+										]
 									}
 								}
 							],
@@ -1774,8 +1730,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"attrRuleId\", response.id);",
 											"});"
-										],
-										"id": "0aa1d0c5-736f-49e9-b043-0c53cdefcc48"
+										]
 									}
 								}
 							],
@@ -1849,8 +1804,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"webRuleId\", response.id);",
 											"});"
-										],
-										"id": "5c64c37e-f186-4fa4-9c51-daac4dc5549e"
+										]
 									}
 								}
 							],
@@ -1910,9 +1864,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Rule Sets",
@@ -1931,8 +1883,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"apiRSId\", response.id);    ",
 											"});"
-										],
-										"id": "874f1728-4d34-4105-9c76-85b2ad7b082b"
+										]
 									}
 								}
 							],
@@ -1992,9 +1943,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Identity Mappings",
@@ -2013,8 +1962,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"apiMapId\", response.id);",
 											"});"
-										],
-										"id": "0bd7aaee-8451-4460-ba52-31853dd5e786"
+										]
 									}
 								}
 							],
@@ -2088,8 +2036,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"webMapId\", response.id);",
 											"});"
-										],
-										"id": "d277cadc-b3f3-4da6-b66d-4c58a42695ca"
+										]
 									}
 								}
 							],
@@ -2149,9 +2096,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Web Sessions",
@@ -2170,8 +2115,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"webSessionId\", response.id);",
 											"});"
-										],
-										"id": "7cb8aa67-83b4-4591-ab7c-7d857ecd2515"
+										]
 									}
 								}
 							],
@@ -2231,9 +2175,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Trusted Certificate Group",
@@ -2244,7 +2186,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Get Primary PF SSL Cert\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2253,7 +2194,7 @@
 											"    pm.environment.set(\"pfCertId\", response.runtimeServerCertRef.id);",
 											"});"
 										],
-										"id": "8818fa89-99f7-438c-be56-175bdbe1b268"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2265,13 +2206,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "username",
-											"value": "{{paUn}}",
+											"key": "password",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
-											"key": "password",
-											"value": "{{paPw}}",
+											"key": "username",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
@@ -2291,7 +2232,7 @@
 									},
 									{
 										"key": "X-XSRF-HEADER",
-										"value": "PingAccess",
+										"value": "PingFederate",
 										"type": "text"
 									}
 								],
@@ -2324,7 +2265,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Get Primary PF SSL Cert Data\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2332,7 +2272,7 @@
 											"    pm.environment.set(\"pfCertData\", pm.response.text());",
 											"});"
 										],
-										"id": "a443147d-d8a8-4094-81d5-155b6628e58f"
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -2344,13 +2284,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "username",
-											"value": "{{paUn}}",
+											"key": "password",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
-											"key": "password",
-											"value": "{{paPw}}",
+											"key": "username",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
@@ -2370,7 +2310,7 @@
 									},
 									{
 										"key": "X-XSRF-HEADER",
-										"value": "PingAccess",
+										"value": "PingFederate",
 										"type": "text"
 									}
 								],
@@ -2412,8 +2352,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"certId\", response.id);",
 											"});"
-										],
-										"id": "590b185a-f8ab-4cc6-b419-4a7fa84d8cca"
+										]
 									}
 								}
 							],
@@ -2498,8 +2437,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"certGroupId\", response.id);",
 											"});"
-										],
-										"id": "4f9f2aea-0c93-413c-8afd-0506bee7327a"
+										]
 									}
 								}
 							],
@@ -2559,9 +2497,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Sites",
@@ -2572,7 +2508,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a70d9ac6-d165-4abd-8eef-cd84f899f8d7",
 										"exec": [
 											"pm.test(\"Site Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2641,9 +2576,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "PF Token Provider (Optional)",
@@ -2654,7 +2587,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "20c70945-a054-407e-92cf-7b3c3d9b2077",
 										"exec": [
 											"pm.test(\"PF Admin Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2729,7 +2661,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "30d9800d-bfa5-4347-93a0-5c58ae5d17c9",
 										"exec": [
 											"pm.test(\"PF Engine Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2812,8 +2743,7 @@
 											"    // var response = pm.response.json();",
 											"    // pm.environment.set(\"siteId\", response.id);",
 											"});"
-										],
-										"id": "8929a63f-c021-4cf5-98ca-c7a296dc2eeb"
+										]
 									}
 								}
 							],
@@ -2873,9 +2803,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Virtual Host",
@@ -2886,7 +2814,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6392a048-cb24-4df1-b042-abbe6e42e615",
 										"exec": [
 											"pm.test(\"Checking for PA Virtual Host\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2965,7 +2892,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b80ad022-7da5-432d-9260-c889d9287aef",
 										"exec": [
 											"pm.test(\"PA Virtual Host Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3040,7 +2966,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6392a048-cb24-4df1-b042-abbe6e42e615",
 										"exec": [
 											"pm.test(\"Checking for PF Virtual Host\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3120,7 +3045,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b80ad022-7da5-432d-9260-c889d9287aef",
 										"exec": [
 											"pm.test(\"PF Virtual Host Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3190,9 +3114,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Applications",
@@ -3203,7 +3125,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "17cbc54f-e674-40ef-9514-5c5b360a95f3",
 										"exec": [
 											"pm.test(\"API Applicaiton Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3278,7 +3199,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0b8460ec-7437-4d5c-b64a-40fdbd012945",
 										"exec": [
 											"pm.test(\"Web Applicaiton Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3347,9 +3267,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Resources",
@@ -3368,8 +3286,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"rootResourceId\", response.items[0].id);",
 											"});"
-										],
-										"id": "cdfcb2a6-f8e8-43a6-b9c6-0157839aca31"
+										]
 									}
 								}
 							],
@@ -3434,8 +3351,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"rootResourceId\", response.id);",
 											"});"
-										],
-										"id": "64a3c452-aa81-4ca7-9469-53f08f1d106a"
+										]
 									}
 								}
 							],
@@ -3511,8 +3427,7 @@
 											"    // var response = pm.response.json();",
 											"    // pm.environment.set(\"apiAppId\", response.id);",
 											"});"
-										],
-										"id": "d2c71dba-2751-4292-93e0-bc1c028b78c6"
+										]
 									}
 								}
 							],
@@ -3573,19 +3488,15 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"event": [
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "a854277f-efc2-432f-a451-956a500999a5",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -3595,13 +3506,11 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "cc53b2e8-2911-40df-81c7-f802e1071606",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
