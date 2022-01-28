@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2e47901a-e9c4-4464-8675-361c02547542",
+		"_postman_id": "62d15998-c556-4d7a-9cc4-83a18315f8b2",
 		"name": "PA QuickStart Setup Scalr",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,6 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Simple PCV Created\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -24,8 +25,7 @@
 											"    var location = pm.response.headers.get(\"Location\");",
 											"    pm.environment.set(\"serverName\", location.substring(8, location.indexOf(\":9999\")));",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -1043,12 +1043,12 @@
 										{
 											"listen": "test",
 											"script": {
+												"type": "text/javascript",
 												"exec": [
 													"pm.test(\"OAuth Client (api_implicit) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"type": "text/javascript"
+												]
 											}
 										}
 									],
@@ -1181,12 +1181,12 @@
 										{
 											"listen": "test",
 											"script": {
+												"type": "text/javascript",
 												"exec": [
 													"pm.test(\"OAuth Client (pa_wam) Created\", function () {",
 													"    pm.response.to.have.status(201);",
 													"});"
-												],
-												"type": "text/javascript"
+												]
 											}
 										}
 									],
@@ -1257,12 +1257,12 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Enable SLO Redirect\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -1330,6 +1330,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Get Primary PF Runtime Cert\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1341,8 +1342,7 @@
 											"        postman.setNextRequest(\"Create API Scope Rule\");",
 											"    }",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -1354,13 +1354,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
+											"key": "username",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "{{pfUn}}",
+											"key": "password",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
@@ -1412,6 +1412,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Generate Primary PF Cert for Scalar\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -1420,8 +1421,7 @@
 											"    pm.environment.set(\"pfCertId\", response.id);",
 											"",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -1430,18 +1430,14 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
-											"type": "string"
-										},
-										{
 											"key": "username",
 											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
-											"key": "saveHelperData",
-											"type": "any"
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
 										},
 										{
 											"key": "showPassword",
@@ -1489,12 +1485,12 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Set PF Primary Runtime & Admin Cert\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -1503,18 +1499,14 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
-											"type": "string"
-										},
-										{
 											"key": "username",
 											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
-											"key": "saveHelperData",
-											"type": "any"
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
 										},
 										{
 											"key": "showPassword",
@@ -1567,12 +1559,12 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Update Federation Settings for PF Host\", function () {",
 											"    pm.response.to.have.status(200);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -1581,18 +1573,14 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
-											"type": "string"
-										},
-										{
 											"key": "username",
 											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
-											"key": "saveHelperData",
-											"type": "any"
+											"key": "password",
+											"value": "{{pfPw}}",
+											"type": "string"
 										},
 										{
 											"key": "showPassword",
@@ -2186,6 +2174,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Get Primary PF SSL Cert\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2193,8 +2182,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"pfCertId\", response.runtimeServerCertRef.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2206,13 +2194,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
+											"key": "username",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "{{pfUn}}",
+											"key": "password",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
@@ -2265,14 +2253,14 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Get Primary PF SSL Cert Data\", function () {",
 											"    pm.response.to.have.status(200);",
 											"    ",
 											"    pm.environment.set(\"pfCertData\", pm.response.text());",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2284,13 +2272,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
+											"key": "username",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "{{pfUn}}",
+											"key": "password",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
@@ -2508,6 +2496,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Site Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2515,8 +2504,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"siteId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2587,6 +2575,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"PF Admin Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2594,8 +2583,7 @@
 											"    // var response = pm.response.json();",
 											"    // pm.environment.set(\"siteId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2661,6 +2649,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"PF Engine Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2668,8 +2657,7 @@
 											"    // var response = pm.response.json();",
 											"    // pm.environment.set(\"siteId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2826,7 +2814,7 @@
 											"    }",
 											"    else ",
 											"    {",
-											"        pm.environment.set(\"pAVirtualHostId\", response.items[0].id);",
+											"        pm.environment.set(\"paVirtualHostId\", response.items[0].id);",
 											"        postman.setNextRequest(\"Check for PF Virtual Host\");",
 											"    }",
 											"});"
@@ -2840,13 +2828,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "username",
-											"value": "{{paUn}}",
+											"key": "password",
+											"value": "{{paPw}}",
 											"type": "string"
 										},
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
+											"key": "username",
+											"value": "{{paUn}}",
 											"type": "string"
 										},
 										{
@@ -2892,6 +2880,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"PA Virtual Host Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2899,8 +2888,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"paVirtualHostId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2992,13 +2980,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "username",
-											"value": "{{paUn}}",
+											"key": "password",
+											"value": "{{paPw}}",
 											"type": "string"
 										},
 										{
-											"key": "password",
-											"value": "{{pfPw}}",
+											"key": "username",
+											"value": "{{paUn}}",
 											"type": "string"
 										},
 										{
@@ -3045,6 +3033,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"PF Virtual Host Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3052,8 +3041,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"pfVirtualHostId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -3125,6 +3113,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"API Applicaiton Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3132,8 +3121,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"apiAppId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -3199,6 +3187,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Web Applicaiton Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3206,8 +3195,7 @@
 											"    var response = pm.response.json();",
 											"    pm.environment.set(\"webAppId\", response.id);",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
