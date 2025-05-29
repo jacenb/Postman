@@ -1,8 +1,10 @@
 {
 	"info": {
-		"_postman_id": "58d678bf-e995-459a-8de7-24e1444e49eb",
+		"_postman_id": "99dbdbb3-107c-406c-9e3f-77c45df5aae0",
 		"name": "PA QuickStart Setup",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8082918",
+		"_collection_link": "https://www.postman.com/jbs-labs/workspace/jb-s-labs-workspace/collection/8082918-99dbdbb3-107c-406c-9e3f-77c45df5aae0?action=share&source=collection_link&creator=8082918"
 	},
 	"item": [
 		{
@@ -17,7 +19,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "18654f1f-702d-45d1-b2e2-4742a2253d2e",
 										"exec": [
 											""
 										],
@@ -27,7 +28,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3a8cf566-6b2a-4887-ac6f-f7e702cb3476",
 										"exec": [
 											"pm.test(\"Simple PCV Created\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -66,7 +66,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -103,7 +102,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7ccec0c2-0c5d-4dee-8e4b-1fb74ffd93f6",
 										"exec": [
 											"pm.test(\"HTML Form Adapter Created\", function () {",
 											"    pm.response.to.have.status(201);",
@@ -170,8 +168,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "OAuth Server",
@@ -182,7 +179,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e284e09c-b576-4c4d-8af6-05ed9551436d",
 										"exec": [
 											"pm.test(\"Enable OIDC SLO\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -250,9 +246,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "OAuth Config",
@@ -266,7 +260,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "d811d801-bc60-4dae-acfc-2718352313f9",
 												"exec": [
 													"pm.test(\"Scope (openid) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -344,7 +337,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "58ab8f47-2136-4bc6-b45f-f987aeaa2b92",
 												"exec": [
 													"pm.test(\"Scope (address) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -383,8 +375,8 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
@@ -422,7 +414,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "1cd8f58d-2dc3-4cf3-88b8-d678390c12ca",
 												"exec": [
 													"pm.test(\"Scope (email) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -461,13 +452,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -500,7 +491,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "1bc376ac-f0f6-41dc-a893-bf17e158fd8b",
 												"exec": [
 													"pm.test(\"Scope (phone) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -539,13 +529,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -578,7 +568,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "186cebf3-76f8-4a06-aaae-793276f77cbf",
 												"exec": [
 													"pm.test(\"Scope (profile) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -617,13 +606,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -656,7 +645,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "186cebf3-76f8-4a06-aaae-793276f77cbf",
 												"exec": [
 													"pm.test(\"Scope (profile) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -695,13 +683,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -728,8 +716,7 @@
 									},
 									"response": []
 								}
-							],
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Grant Mapping",
@@ -740,7 +727,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "2454cc44-a60d-4ab2-9802-e86abbc1ae47",
 												"exec": [
 													"pm.test(\"IDP Adapter Mapping Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -814,7 +800,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "20a13d98-7843-4435-8b77-fadbf9bee43c",
 												"exec": [
 													"pm.test(\"Resource Owner Credential Mapping Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -882,8 +867,7 @@
 									},
 									"response": []
 								}
-							],
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Token Mapping",
@@ -894,7 +878,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "3639a176-e3c5-4e1f-babc-d998991cfe6b",
 												"exec": [
 													"pm.test(\"Access Token Manager (Default) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -933,14 +916,13 @@
 										"header": [
 											{
 												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											},
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "pingfederate"
+												"value": "pingfederate",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -971,7 +953,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "82693656-553a-49ad-a92e-ab04e4a07fc2",
 												"exec": [
 													"pm.test(\"Token Mapping (Default) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1045,7 +1026,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "cc7939b3-ae7d-4b7c-89dc-633aa2a08f6f",
 												"exec": [
 													"pm.test(\"OIDC Policy (PA-WAM) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1114,8 +1094,7 @@
 									},
 									"response": []
 								}
-							],
-							"_postman_isSubFolder": true
+							]
 						},
 						{
 							"name": "Clients",
@@ -1126,7 +1105,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "78b93e70-6781-4856-86ad-cce8eba79e44",
 												"exec": [
 													"pm.test(\"OAuth Client (api_implicit) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1200,7 +1178,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "c3d87b2d-81a7-454c-9859-bf7ad5664a29",
 												"exec": [
 													"pm.test(\"OAuth Client (pa_rs) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1274,7 +1251,6 @@
 										{
 											"listen": "test",
 											"script": {
-												"id": "3001297a-69d3-439f-ade8-4f2600af7338",
 												"exec": [
 													"pm.test(\"OAuth Client (pa_wam) Created\", function () {",
 													"    pm.response.to.have.status(201);",
@@ -1342,11 +1318,9 @@
 									},
 									"response": []
 								}
-							],
-							"_postman_isSubFolder": true
+							]
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Redirect Validation",
@@ -1357,7 +1331,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d7158c15-2d7a-4b29-81cc-c66e79410134",
 										"exec": [
 											"pm.test(\"Enable SLO Redirect\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1424,9 +1397,7 @@
 							},
 							"response": []
 						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
+					]
 				}
 			]
 		},
@@ -1442,7 +1413,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"API Edit Scope Rule Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1484,7 +1454,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -1521,7 +1490,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Attribute Value Rule Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1563,7 +1531,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -1600,7 +1567,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Web Session Rule Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1642,9 +1608,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -1673,8 +1638,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Rule Sets",
@@ -1685,7 +1649,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"API Rule Set Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1700,7 +1663,6 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "35cc98cc-64c8-4c97-9da3-1e028bf09924",
 										"exec": [
 											""
 										],
@@ -1737,7 +1699,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -1768,8 +1729,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Identity Mappings",
@@ -1780,7 +1740,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"API Identity Mapping Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1822,9 +1781,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -1859,7 +1817,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Web Identity Mapping Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1901,9 +1858,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -1932,8 +1888,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Web Sessions",
@@ -1944,7 +1899,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Web Session Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1986,9 +1940,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2017,8 +1970,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Trusted Certificate Group",
@@ -2029,7 +1981,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Get Primary PF SSL Cert\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2038,7 +1989,8 @@
 											"    pm.environment.set(\"pfCertId\", response.runtimeServerCertRef.id);",
 											"});"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2051,12 +2003,12 @@
 									"basic": [
 										{
 											"key": "password",
-											"value": "{{paPw}}",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
 											"key": "username",
-											"value": "{{paUn}}",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
@@ -2074,9 +2026,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2113,7 +2064,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Get Primary PF SSL Cert Data\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2121,7 +2071,8 @@
 											"    pm.environment.set(\"pfCertData\", pm.response.text());",
 											"});"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2134,12 +2085,12 @@
 									"basic": [
 										{
 											"key": "password",
-											"value": "{{paPw}}",
+											"value": "{{pfPw}}",
 											"type": "string"
 										},
 										{
 											"key": "username",
-											"value": "{{paUn}}",
+											"value": "{{pfUn}}",
 											"type": "string"
 										},
 										{
@@ -2157,9 +2108,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2197,7 +2147,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "75f9e545-694a-4b54-807d-5eb1983a0645",
 										"exec": [
 											"pm.test(\"Certificate for PF Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2239,9 +2188,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2287,7 +2235,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Trusted Certidicate Group Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2329,9 +2276,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2360,8 +2306,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Sites",
@@ -2372,7 +2317,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Site Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2414,9 +2358,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2445,8 +2388,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "PF Token Provider (Optional)",
@@ -2457,7 +2399,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "592c29d8-dbc3-4b2e-9c93-f187e38225b8",
 										"exec": [
 											"pm.test(\"PF Admin Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2503,7 +2444,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2536,7 +2476,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "39f3732b-a4cd-4b91-b7fd-a1568cb767c4",
 										"exec": [
 											"pm.test(\"PF Engine Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2582,7 +2521,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2614,7 +2552,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e723712f-0df2-4e52-9efa-7dcb636cee4e",
 										"exec": [
 											"pm.test(\"PF Auth Server Config Set\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2660,7 +2597,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2687,8 +2623,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Virtual Host",
@@ -2699,7 +2634,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4676b3d9-be49-4778-bc87-3ed68f2d566b",
 										"exec": [
 											"pm.test(\"Checking for PF Virtual Host\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2717,7 +2651,8 @@
 											"    }",
 											"});"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -2727,7 +2662,7 @@
 									"basic": [
 										{
 											"key": "password",
-											"value": "{{pfPw}}",
+											"value": "{{paPw}}",
 											"type": "string"
 										},
 										{
@@ -2783,7 +2718,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e4eaf009-e2e4-4d5c-b45b-6cea1e787ab4",
 										"exec": [
 											"pm.test(\"Virtual Host Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2825,13 +2759,11 @@
 								"header": [
 									{
 										"key": "X-XSRF-HEADER",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "PingAccess"
+										"value": "PingAccess",
+										"type": "text"
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2857,8 +2789,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Applications",
@@ -2869,7 +2800,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"API Applicaiton Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2911,9 +2841,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2948,7 +2877,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "728d3dca-0151-44ff-bbd2-f87367788fef",
 										"exec": [
 											"pm.test(\"Web Applicaiton Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2990,9 +2918,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -3021,8 +2948,7 @@
 							},
 							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				},
 				{
 					"name": "Resources",
@@ -3033,7 +2959,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "89f67871-71e0-4b9f-9e19-c88d189e463d",
 										"exec": [
 											"pm.test(\"Get Web App's Root Resource\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3103,7 +3028,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "89f67871-71e0-4b9f-9e19-c88d189e463d",
 										"exec": [
 											"pm.test(\"Get Web App's Root Resource\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3149,7 +3073,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -3184,7 +3107,6 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "89f67871-71e0-4b9f-9e19-c88d189e463d",
 										"exec": [
 											"pm.test(\"Headers Resource Created\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3230,7 +3152,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -3257,9 +3178,87 @@
 								"description": "Create Headers Resource for the PAQuickStart Web App"
 							},
 							"response": []
+						},
+						{
+							"name": "Create API Headers Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Headers Resource Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    // var response = pm.response.json();",
+											"    // pm.environment.set(\"apiAppId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"API Headers\",\n    \"methods\": [\n    \t\"*\"\n    ],\n    \"pathPatterns\": [\n    {\n        \"pattern\": \"/headers\",\n        \"type\": \"WILDCARD\"\n    }\n    ],\n    \"pathPrefixes\": [\n    \t\"/headers\"\n    ],\n    \"auditLevel\": \"ON\",\n    \"rootResource\": false,\n    \"anonymous\": false,\n    \"enabled\": true,\n    \"unprotected\": false,\n    \"policy\": {\n    \t\"Web\": [],\n        \"API\": []\n    },\n    \"defaultAuthTypeOverride\": \"Web\",\n    \"applicationId\": {{apiAppId}},\n    \"queryParamConfig\": null,\n    \"resourceType\": \"Virtual\",\n    \"resourceTypeConfiguration\": {\n    \"responseGenerator\": {\n        \"className\": \"com.pingidentity.pa.resources.responsegenerator.TemplateResponseGenerator\",\n        \"configuration\": {\n        \"template\": \"{\\n  \\\"status\\\": \\\"200\\\",\\n  \\\"message\\\": \\\"OK\\\"\\n}\",\n            \"responseCode\": 200,\n            \"mediaType\": \"application/json;charset=utf-8\"\n        }\n    }\n    },\n    \"authenticationChallengePolicyId\": null,\n    \"riskPolicyId\": 0\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications/{{apiAppId}}/resources",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications",
+										"{{apiAppId}}",
+										"resources"
+									]
+								},
+								"description": "Create Headers Resource for the PAQuickStart API App"
+							},
+							"response": []
 						}
-					],
-					"_postman_isSubFolder": true
+					]
 				}
 			]
 		}
