@@ -1,8 +1,10 @@
 {
 	"info": {
-		"_postman_id": "62d15998-c556-4d7a-9cc4-83a18315f8b2",
+		"_postman_id": "a7e8beb6-01d2-42b9-b8dd-2d258a0b492a",
 		"name": "PA QuickStart Setup Scalr",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8082918",
+		"_collection_link": "https://www.postman.com/jbs-labs/workspace/jb-s-labs-workspace/collection/8082918-a7e8beb6-01d2-42b9-b8dd-2d258a0b492a?action=share&source=collection_link&creator=8082918"
 	},
 	"item": [
 		{
@@ -54,7 +56,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -348,8 +349,8 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
@@ -421,13 +422,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -494,13 +495,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -567,13 +568,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -640,13 +641,13 @@
 										"header": [
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "PingFederate"
+												"value": "PingFederate",
+												"type": "text"
 											},
 											{
 												"key": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -861,14 +862,13 @@
 										"header": [
 											{
 												"key": "Content-Type",
-												"name": "Content-Type",
-												"type": "text",
-												"value": "application/json"
+												"value": "application/json",
+												"type": "text"
 											},
 											{
 												"key": "X-XSRF-Header",
-												"type": "text",
-												"value": "pingfederate"
+												"value": "pingfederate",
+												"type": "text"
 											}
 										],
 										"body": {
@@ -1374,9 +1374,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -1673,7 +1672,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -1747,7 +1745,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -1821,9 +1818,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -1900,7 +1896,6 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									},
@@ -1979,9 +1974,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2053,9 +2047,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2132,9 +2125,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2214,9 +2206,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2292,9 +2283,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2369,9 +2359,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2454,9 +2443,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2533,9 +2521,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -2616,7 +2603,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2690,7 +2676,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2764,7 +2749,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2802,6 +2786,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Checking for PA Virtual Host\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2818,8 +2803,7 @@
 											"        postman.setNextRequest(\"Check for PF Virtual Host\");",
 											"    }",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2828,13 +2812,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{paPw}}",
+											"key": "username",
+											"value": "{{paUn}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "{{paUn}}",
+											"key": "password",
+											"value": "{{paPw}}",
 											"type": "string"
 										},
 										{
@@ -2917,13 +2901,11 @@
 								"header": [
 									{
 										"key": "X-XSRF-HEADER",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "PingAccess"
+										"value": "PingAccess",
+										"type": "text"
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -2954,6 +2936,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"type": "text/javascript",
 										"exec": [
 											"pm.test(\"Checking for PF Virtual Host\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2970,8 +2953,7 @@
 											"        postman.setNextRequest(\"Create API Application\");",
 											"    }",
 											"});"
-										],
-										"type": "text/javascript"
+										]
 									}
 								}
 							],
@@ -2980,13 +2962,13 @@
 									"type": "basic",
 									"basic": [
 										{
-											"key": "password",
-											"value": "{{paPw}}",
+											"key": "username",
+											"value": "{{paUn}}",
 											"type": "string"
 										},
 										{
-											"key": "username",
-											"value": "{{paUn}}",
+											"key": "password",
+											"value": "{{paPw}}",
 											"type": "string"
 										},
 										{
@@ -3070,13 +3052,11 @@
 								"header": [
 									{
 										"key": "X-XSRF-HEADER",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "PingAccess"
+										"value": "PingAccess",
+										"type": "text"
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -3150,9 +3130,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -3224,9 +3203,8 @@
 								"header": [
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
-										"type": "text",
-										"value": "application/json"
+										"value": "application/json",
+										"type": "text"
 									},
 									{
 										"key": "X-XSRF-HEADER",
@@ -3372,7 +3350,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -3448,7 +3425,6 @@
 									},
 									{
 										"key": "Content-Type",
-										"name": "Content-Type",
 										"value": "application/json",
 										"type": "text"
 									}
@@ -3473,6 +3449,85 @@
 									]
 								},
 								"description": "Create Headers Resource for the PAQuickStart Web App"
+							},
+							"response": []
+						},
+						{
+							"name": "Create API Headers Resource",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Headers Resource Created\", function () {",
+											"    pm.response.to.have.status(200);",
+											"    ",
+											"    // var response = pm.response.json();",
+											"    // pm.environment.set(\"apiAppId\", response.id);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{paPw}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{paUn}}",
+											"type": "string"
+										},
+										{
+											"key": "saveHelperData",
+											"type": "any"
+										},
+										{
+											"key": "showPassword",
+											"value": false,
+											"type": "boolean"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-XSRF-HEADER",
+										"value": "PingAccess"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"API Headers\",\n    \"methods\": [\n    \t\"*\"\n    ],\n    \"pathPatterns\": [\n    {\n        \"pattern\": \"/headers\",\n        \"type\": \"WILDCARD\"\n    }\n    ],\n    \"pathPrefixes\": [\n    \t\"/headers\"\n    ],\n    \"auditLevel\": \"ON\",\n    \"rootResource\": false,\n    \"anonymous\": false,\n    \"enabled\": true,\n    \"unprotected\": false,\n    \"policy\": {\n    \t\"Web\": [],\n        \"API\": []\n    },\n    \"defaultAuthTypeOverride\": \"Web\",\n    \"applicationId\": {{apiAppId}},\n    \"queryParamConfig\": null,\n    \"resourceType\": \"Virtual\",\n    \"resourceTypeConfiguration\": {\n    \"responseGenerator\": {\n        \"className\": \"com.pingidentity.pa.resources.responsegenerator.TemplateResponseGenerator\",\n        \"configuration\": {\n        \"template\": \"{\\n  \\\"status\\\": \\\"200\\\",\\n  \\\"message\\\": \\\"OK\\\"\\n}\",\n            \"responseCode\": 200,\n            \"mediaType\": \"application/json;charset=utf-8\"\n        }\n    }\n    },\n    \"authenticationChallengePolicyId\": null,\n    \"riskPolicyId\": 0\n}"
+								},
+								"url": {
+									"raw": "https://{{paHost}}:9000/pa-admin-api/{{v}}/applications/{{apiAppId}}/resources",
+									"protocol": "https",
+									"host": [
+										"{{paHost}}"
+									],
+									"port": "9000",
+									"path": [
+										"pa-admin-api",
+										"{{v}}",
+										"applications",
+										"{{apiAppId}}",
+										"resources"
+									]
+								},
+								"description": "Create Headers Resource for the PAQuickStart API App"
 							},
 							"response": []
 						}
